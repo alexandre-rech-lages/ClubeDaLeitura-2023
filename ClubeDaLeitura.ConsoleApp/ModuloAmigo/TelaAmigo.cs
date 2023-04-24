@@ -1,4 +1,6 @@
 ﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
+using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
+using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 using System.Collections;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
@@ -80,21 +82,20 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
 
         public void ExcluirAmigos()
         {
-            Console.Clear();
+            MostrarCabecalho("Cadastro de Amigos", "Excluindo um amigo já cadastrado...");
 
-            Console.WriteLine("Cadastro de Amigos");
+            VisualizarAmigos(false);
 
-            Console.WriteLine("Excluindo um amigo já cadastrado...");
+            Console.WriteLine();
 
-            Console.ReadLine();
+            Console.Write("Digite o id do amigo: ");
+            int id = Convert.ToInt32(Console.ReadLine());
 
-            Console.ForegroundColor = ConsoleColor.Green;
+            Amigo amigo = repositorioAmigo.SelecionarPorId(id);
 
-            Console.WriteLine("Amigo excluído com sucesso!");
+            repositorioAmigo.Excluir(id);
 
-            Console.ResetColor();
-
-            Console.ReadLine();
+            MostrarMensagem("Amigo excluído com sucesso!", ConsoleColor.Green);
         }
 
         public void VisualizarAmigos(bool mostrarCabecalho)
