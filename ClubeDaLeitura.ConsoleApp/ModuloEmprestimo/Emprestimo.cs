@@ -1,11 +1,11 @@
 ﻿using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
+using ClubeDaLeitura.ConsoleApp.Compartilhado;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
-    public class Emprestimo
-    {
-        public int id;
+    public class Emprestimo : EntidadeBase
+    {        
         public DateTime dataEmprestimo;
         public DateTime dataDevolucao;
         public Revista revista;
@@ -28,6 +28,16 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
                 estaAberto = false;
                 dataDevolucao = DateTime.Now;
             }
+        }
+
+        public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
+        {
+            Emprestimo emprestimoAtualizado = (Emprestimo)registroAtualizado;
+
+            amiguinho = emprestimoAtualizado.amiguinho;
+            revista = emprestimoAtualizado.revista;
+            dataEmprestimo = emprestimoAtualizado.dataEmprestimo;
+            dataDevolucao = emprestimoAtualizado.dataDevolucao;
         }
     }
 }

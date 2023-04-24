@@ -1,10 +1,11 @@
-﻿using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
+﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
+using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 {
-    public class Revista
+    public class Revista : EntidadeBase
     {
-        public int id;
+        
         public string titulo;
         public int edicao;
         public int ano;
@@ -17,5 +18,16 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
             this.ano = ano;
             this.caixa = caixa;
         }
+
+        public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
+        {
+            Revista revistaAtualizada = (Revista)registroAtualizado;
+
+            titulo = revistaAtualizada.titulo;
+            ano = revistaAtualizada.ano;
+            edicao = revistaAtualizada.edicao;
+            caixa = revistaAtualizada.caixa;
+        }
+
     }
 }

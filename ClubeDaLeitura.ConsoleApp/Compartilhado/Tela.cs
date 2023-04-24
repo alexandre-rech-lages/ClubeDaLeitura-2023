@@ -13,6 +13,8 @@
 
         public void MostrarMensagem(string mensagem, ConsoleColor cor)
         {
+            Console.WriteLine();
+
             Console.ForegroundColor = cor;
 
             Console.WriteLine(mensagem);

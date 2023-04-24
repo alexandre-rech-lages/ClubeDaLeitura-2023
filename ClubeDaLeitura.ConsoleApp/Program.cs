@@ -1,4 +1,5 @@
-﻿using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
+﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
+using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
 using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
 using ClubeDaLeitura.ConsoleApp.ModuloRevista;
@@ -6,12 +7,13 @@ using System.Collections;
 
 namespace ClubeDaLeitura.ConsoleApp
 {
+    
     internal class Program
     {
         static void Main(string[] args)
-        {            
+        {           
             RepositorioAmigo repositorioAmigo = new RepositorioAmigo(new ArrayList());
-            RepositorioCaixa repoCaixa = new RepositorioCaixa(new ArrayList());
+            RepositorioCaixa repoCaixa = new RepositorioCaixa(new ArrayList());            
             RepositorioRevista repositorioRevista = new RepositorioRevista(new ArrayList());
             RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo(new ArrayList());
 

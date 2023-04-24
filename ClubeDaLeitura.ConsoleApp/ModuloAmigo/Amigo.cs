@@ -1,8 +1,10 @@
-﻿namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
+﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
+
+namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
 {
-    public class Amigo
+    public class Amigo : EntidadeBase
     {
-        public int id;
+        
         public string nome;
         public string nomeResponsavel;
         public string telefone;
@@ -14,6 +16,16 @@
             this.nomeResponsavel = nomeResponsavel;
             this.telefone = telefone;
             this.endereco = endereco;
+        }
+
+        public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
+        {
+            Amigo amigoAtualizado = (Amigo)registroAtualizado;
+
+            nome = amigoAtualizado.nome;
+            nomeResponsavel = amigoAtualizado.nomeResponsavel;
+            telefone = amigoAtualizado.telefone;
+            endereco = amigoAtualizado.endereco;
         }
     }
 }

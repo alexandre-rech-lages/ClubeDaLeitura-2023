@@ -187,7 +187,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 
             Console.WriteLine("{0, -10} | {1, -40} | {2, -20} | {3, -20} | {4, -10}", "Id", "Revista", "Amigo", "Data do Empréstimo", "Status");
 
-            Console.WriteLine("---------------------------------------------------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------");
 
             foreach (Emprestimo emprestimo in emprestimos)
             {
