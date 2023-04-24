@@ -11,7 +11,8 @@
             Console.WriteLine("Digite 1 para cadastrar Caixas");
             Console.WriteLine("Digite 2 para cadastrar Amigos");
             Console.WriteLine("Digite 3 para cadastrar Revistas");
-            Console.WriteLine("Digite 4 para cadastrar Empréstimos\n");
+            Console.WriteLine("Digite 4 para cadastrar Empréstimos");
+            Console.WriteLine("Digite 5 para cadastrar Reservas\n");
 
             Console.WriteLine("Digite s para Sair");
 

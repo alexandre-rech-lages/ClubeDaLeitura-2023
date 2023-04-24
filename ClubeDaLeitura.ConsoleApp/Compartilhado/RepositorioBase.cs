@@ -2,7 +2,7 @@
 
 namespace ClubeDaLeitura.ConsoleApp.Compartilhado
 {
-    public class RepositorioBase
+    public abstract class RepositorioBase
     {
         protected ArrayList listaRegistros;
         protected int contadorRegistros = 0;
