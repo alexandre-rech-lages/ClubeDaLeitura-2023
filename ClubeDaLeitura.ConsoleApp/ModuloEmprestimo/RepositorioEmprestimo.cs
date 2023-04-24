@@ -1,60 +1,17 @@
-﻿using System.Collections;
+﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
+using System.Collections;
 
 namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 {
-    public class RepositorioEmprestimo
+    public class RepositorioEmprestimo : RepositorioBase
     {
-        private ArrayList listaEmprestimos;
-
-        public RepositorioEmprestimo(ArrayList listaEmprestimos)
+        public RepositorioEmprestimo(ArrayList lista) : base(lista)
         {
-            this.listaEmprestimos = listaEmprestimos;
         }
 
-        private int contador;
-        public void Inserir(Emprestimo emprestimo)
+        public override Emprestimo SelecionarPorId(int id)
         {
-            contador++;
-
-            emprestimo.id = contador;
-
-            listaEmprestimos.Add(emprestimo);
-        }
-
-        public ArrayList SelecionarTodos()
-        {
-            return listaEmprestimos;
-        }
-
-        public void Editar(int id, Emprestimo emprestimoAtualizado)
-        {
-            Emprestimo emprestimo = SelecionarPorId(id);
-
-            emprestimo.amiguinho = emprestimoAtualizado.amiguinho;
-            emprestimo.revista = emprestimoAtualizado.revista;
-            emprestimo.dataEmprestimo = emprestimoAtualizado.dataEmprestimo;
-            emprestimo.dataDevolucao = emprestimoAtualizado.dataDevolucao;
-        }
-
-        public void Excluir(int id)
-        {
-            Emprestimo emprestimo = SelecionarPorId(id);
-
-            listaEmprestimos.Remove(emprestimo);
-        }
-
-        public Emprestimo SelecionarPorId(int id)
-        {
-            Emprestimo emprestimo = null;
-
-            foreach (Emprestimo e in listaEmprestimos)
-            {
-                if (e.id == id)
-                {
-                    emprestimo = e;
-                    break;
-                }
-            }
+            Emprestimo emprestimo = (Emprestimo)base.SelecionarPorId(id);
 
             return emprestimo;
         }
@@ -63,7 +20,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
         {
             ArrayList emprestimoEmAberto = new ArrayList();
 
-            foreach (Emprestimo e in listaEmprestimos)
+            foreach (Emprestimo e in listaRegistros)
             {
                 if (e.estaAberto)
                     emprestimoEmAberto.Add(e);
@@ -76,7 +33,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
         {
             ArrayList emprestimoEmAberto = new ArrayList();
 
-            foreach (Emprestimo e in listaEmprestimos)
+            foreach (Emprestimo e in listaRegistros)
             {
                 if (e.estaAberto && e.dataEmprestimo.Date == data.Date)
                     emprestimoEmAberto.Add(e);
@@ -89,7 +46,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
         {
             ArrayList emprestimosDoMes = new ArrayList();
 
-            foreach (Emprestimo e in listaEmprestimos)
+            foreach (Emprestimo e in listaRegistros)
             {
                 if (e.dataEmprestimo.Month == mes && e.dataEmprestimo.Year == ano)
                     emprestimosDoMes.Add(e);
