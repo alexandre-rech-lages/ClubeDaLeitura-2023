@@ -23,10 +23,10 @@ namespace ClubeDaLeitura.ConsoleApp
             TelaEmprestimo telaEmprestimo = new TelaEmprestimo
                 (repositorioEmprestimo, telaRevista, repositorioRevista, telaAmigo, repositorioAmigo);
 
-            while (true)
-            {
-                TelaPrincipal telaPrincipal = new TelaPrincipal();
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
 
+            while (true)
+            {                
                 string opcao = telaPrincipal.ApresentarMenu();
 
                 if (opcao == "s")

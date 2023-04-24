@@ -7,7 +7,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloAmigo
 {
     public class TelaAmigo : Tela
     {
-        RepositorioAmigo repositorioAmigo;
+        private RepositorioAmigo repositorioAmigo;
 
         public TelaAmigo(RepositorioAmigo repositorioAmigo)
         {

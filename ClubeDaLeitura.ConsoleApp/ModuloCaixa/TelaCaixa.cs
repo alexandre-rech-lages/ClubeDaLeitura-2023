@@ -6,8 +6,8 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloCaixa
 {
     public class TelaCaixa : Tela
     {
-        public RepositorioCaixa repositorioCaixa;
-        public RepositorioRevista repositorioRevista;
+        private RepositorioCaixa repositorioCaixa;
+        private RepositorioRevista repositorioRevista;
 
         public TelaCaixa(RepositorioCaixa repositorio, RepositorioRevista repositorioRevista)
         {

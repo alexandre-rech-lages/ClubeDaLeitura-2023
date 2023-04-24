@@ -6,9 +6,9 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloRevista
 {
     public class TelaRevista : Tela
     {
-        public RepositorioRevista repositorioRevista;
-        public RepositorioCaixa repositorioCaixa;
-        public TelaCaixa telaCaixa;
+        private RepositorioRevista repositorioRevista;
+        private RepositorioCaixa repositorioCaixa;
+        private TelaCaixa telaCaixa;
 
         public TelaRevista(RepositorioRevista repositorioRevista, 
             RepositorioCaixa repositorioCaixa, TelaCaixa telaCaixa)
