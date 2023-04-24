@@ -30,7 +30,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             this.repositorioAmigo = repositorioAmigo;            
         }
 
-        public string ApresentarMenu()
+        public override string ApresentarMenu()
         {
             Console.Clear();
 
@@ -53,13 +53,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 
         public void AbrirNovoEmprestimo()
         {
-            MostrarCabecalho("Cadastro de Empréstimos", "Abrindo um novo emprestimo...");
-
-            Emprestimo emprestimo = ObterEmprestimo();
-
-            repositorioEmprestimo.Inserir(emprestimo);
-
-            MostrarMensagem("Empréstimo aberto com sucesso!", ConsoleColor.Green);
+            base.InserirNovoRegistro();
         }      
 
         public void FecharEmprestimo()
@@ -90,57 +84,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 
             MostrarMensagem("Empréstimo fechado com sucesso!", ConsoleColor.Green);
         }
-
-        public void EditarEmprestimos()
-        {
-            MostrarCabecalho("Cadastro de Empréstimos", "Editando um empréstimo já cadastrado...");
-
-            VisualizarEmprestimos(false);
-
-            Console.WriteLine();
-
-            Console.Write("Digite o id do empréstimo: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-
-            Emprestimo emprestimoAtualizado = ObterEmprestimo();
-
-            repositorioEmprestimo.Editar(id, emprestimoAtualizado);
-
-            MostrarMensagem("Empréstimo editado com sucesso!", ConsoleColor.Green);
-        }
-
-        public void ExcluirEmprestimos()
-        {
-            MostrarCabecalho("Cadastro de Empréstimos", "Excluindo um empréstimo já cadastrado...");
-
-            VisualizarEmprestimos(false);
-
-            Console.WriteLine();
-
-            Console.Write("Digite o id do empréstimo: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-
-            repositorioEmprestimo.Excluir(id);
-
-            MostrarMensagem("Empréstimo excluído com sucesso!", ConsoleColor.Green);
-        }
-
-        public void VisualizarEmprestimos(bool mostrarCabecalho)
-        {
-            if (mostrarCabecalho)
-                MostrarCabecalho("Cadastro de Empréstimos", "Visualizando empréstimos já cadastrados...");
-
-            ArrayList emprestimos = repositorioEmprestimo.SelecionarTodos();
-
-            if (emprestimos.Count == 0)
-            {
-                MostrarMensagem("Nenhuma empréstimo cadastrado", ConsoleColor.DarkYellow);
-                return;
-            }
-
-            MostrarTabela(emprestimos);
-        }
-
+                     
         public void VisualizarEmprestimosEmAbertoNoDia()
         {
             MostrarCabecalho("Cadastro de Empréstimos", "Visualizando empréstimos em aberto no dia...");
@@ -181,7 +125,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             MostrarTabela(emprestimosDoMes);
         }
 
-        private void MostrarTabela(ArrayList emprestimos)
+        protected override void MostrarTabela(ArrayList emprestimos)
         {
             Console.WriteLine();
 
@@ -198,10 +142,10 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
             }
         }
 
-        private Emprestimo ObterEmprestimo()
+        protected override Entidade ObterRegistro()
         {
             //Visualizar as revistas
-            telaRevista.VisualizarRevistas(false);
+            telaRevista.VisualizarRegistros(false);
 
             //escolher uma revista
             Console.Write("Digite o id da revista: ");
@@ -211,7 +155,7 @@ namespace ClubeDaLeitura.ConsoleApp.ModuloEmprestimo
 
             //Visulizar os amigos
 
-            telaAmigo.VisualizarAmigos(false);
+            telaAmigo.VisualizarRegistros(false);
 
             //escolher um amigo
             Console.Write("Digite o id do amigo: ");

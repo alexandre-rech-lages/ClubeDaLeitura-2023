@@ -1,6 +1,8 @@
-﻿using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
+﻿using ClubeDaLeitura.ConsoleApp.Compartilhado;
+using ClubeDaLeitura.ConsoleApp.ModuloAmigo;
 using ClubeDaLeitura.ConsoleApp.ModuloCaixa;
 using ClubeDaLeitura.ConsoleApp.ModuloEmprestimo;
+using ClubeDaLeitura.ConsoleApp.ModuloReserva;
 using ClubeDaLeitura.ConsoleApp.ModuloRevista;
 using System.Collections;
 
@@ -14,17 +16,27 @@ namespace ClubeDaLeitura.ConsoleApp
             RepositorioCaixa repoCaixa = new RepositorioCaixa(new ArrayList());
             RepositorioRevista repositorioRevista = new RepositorioRevista(new ArrayList());
             RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo(new ArrayList());
+            RepositorioReserva repositorioReserva = new RepositorioReserva(new ArrayList());
 
             PopularRepositorios(repositorioAmigo, repoCaixa, repositorioRevista, repositorioEmprestimo);
 
             TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo);
+            telaAmigo.nomeEntidade = "Amigo";
+
             TelaCaixa telaCaixa = new TelaCaixa(repoCaixa, repositorioRevista);
+            telaCaixa.nomeEntidade = "Caixa";
+
             TelaRevista telaRevista = new TelaRevista(repositorioRevista, repoCaixa, telaCaixa);
+            telaRevista.nomeEntidade = "Revista";
+
             TelaEmprestimo telaEmprestimo = new TelaEmprestimo
                 (repositorioEmprestimo, telaRevista, repositorioRevista, telaAmigo, repositorioAmigo);
 
-            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            TelaReserva telaReserva = new TelaReserva(repositorioReserva, telaAmigo, telaRevista, repositorioAmigo, repositorioRevista);
+            telaReserva.nomeEntidade = "Reserva";
 
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            
             while (true)
             {                
                 string opcao = telaPrincipal.ApresentarMenu();
@@ -38,20 +50,20 @@ namespace ClubeDaLeitura.ConsoleApp
 
                     if (opcaoCaixa == "1")
                     {
-                        telaCaixa.InserirNovaCaixa();
+                        telaCaixa.InserirNovoRegistro();
                     }
                     else if (opcaoCaixa == "2")
                     {
-                        telaCaixa.VisualizarCaixas(true);
+                        telaCaixa.VisualizarRegistros(true);
                         Console.ReadLine();
                     }
                     else if (opcaoCaixa == "3")
                     {
-                        telaCaixa.EditarCaixas();
+                        telaCaixa.EditarRegistro();
                     }
                     else if (opcaoCaixa == "4")
                     {
-                        telaCaixa.ExcluirCaixas();
+                        telaCaixa.ExcluirRegistros();
                     }
 
                     continue;
@@ -62,20 +74,20 @@ namespace ClubeDaLeitura.ConsoleApp
 
                     if (opcaoAmigo == "1")
                     {
-                        telaAmigo.InserirNovoAmigo();
+                        telaAmigo.InserirNovoRegistro();
                     }
                     else if (opcaoAmigo == "2")
                     {
-                        telaAmigo.VisualizarAmigos(true);
+                        telaAmigo.VisualizarRegistros(true);
                         Console.ReadLine();
                     }
                     else if (opcaoAmigo == "3")
                     {
-                        telaAmigo.EditarAmigos();
+                        telaAmigo.EditarRegistro();
                     }
                     else if (opcaoAmigo == "4")
                     {
-                        telaAmigo.ExcluirAmigos();
+                        telaAmigo.ExcluirRegistros();
                     }
 
                     continue;
@@ -87,20 +99,20 @@ namespace ClubeDaLeitura.ConsoleApp
 
                     if (opcaoRevista == "1")
                     {
-                        telaRevista.InserirNovaRevista();
+                        telaRevista.InserirNovoRegistro();
                     }
                     else if (opcaoRevista == "2")
                     {
-                        telaRevista.VisualizarRevistas(true);
+                        telaRevista.VisualizarRegistros(true);
                         Console.ReadLine();
                     }
                     else if (opcaoRevista == "3")
                     {
-                        telaRevista.EditarRevistas();
+                        telaRevista.EditarRegistro();
                     }
                     else if (opcaoRevista == "4")
                     {
-                        telaRevista.ExcluirRevistas();
+                        telaRevista.ExcluirRegistros();
                     }
 
                     continue;
@@ -116,7 +128,7 @@ namespace ClubeDaLeitura.ConsoleApp
                     }
                     else if (opcaoEmprestimo == "2")
                     {
-                        telaEmprestimo.VisualizarEmprestimos(true);
+                        telaEmprestimo.VisualizarRegistros(true);
                         Console.ReadLine();
                     }
                     else if (opcaoEmprestimo == "3")
@@ -135,13 +147,38 @@ namespace ClubeDaLeitura.ConsoleApp
                     }
                     else if (opcaoEmprestimo == "6")
                     {
-                        telaEmprestimo.EditarEmprestimos();
+                        telaEmprestimo.EditarRegistro();
                     }
                     else if (opcaoEmprestimo == "7")
                     {
-                        telaEmprestimo.ExcluirEmprestimos();
+                        telaEmprestimo.ExcluirRegistros();
                     }
                     
+
+                    continue;
+                }
+
+                else if (opcao == "5")
+                {
+                    string opcaoReserva = telaReserva.ApresentarMenu();
+
+                    if (opcaoReserva == "1")
+                    {
+                        telaReserva.InserirNovoRegistro();
+                    }
+                    else if (opcaoReserva == "2")
+                    {
+                        telaReserva.VisualizarRegistros(true);
+                        Console.ReadLine();
+                    }
+                    else if (opcaoReserva == "3")
+                    {
+                        telaReserva.EditarRegistro();
+                    }
+                    else if (opcaoReserva == "4")
+                    {
+                        telaReserva.ExcluirRegistros();
+                    }
 
                     continue;
                 }
